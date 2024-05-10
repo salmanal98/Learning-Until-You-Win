@@ -1,0 +1,77 @@
+#include <iostream>
+#include <limits>
+#include <string>
+
+
+    // Declaration Prototype Function
+void convertNumString(int&);
+
+    // Main Function
+int main() {
+
+        // variable
+    int Num;
+
+    CONTINUE:
+    system("clear");
+
+        // display
+    std::cout << "Input Number : ";
+    std::cin >> Num;
+
+    std::cout << "0 % 3 = " << (0 % 3) << std::endl;
+    std::cout << "1 % 3 = " << (1 % 3) << std::endl;
+    std::cout << "2 % 3 = " << (2 % 3) << std::endl;
+    std::cout << "3 % 3 = " << (3 % 3) << std::endl;
+    std::cout << "4 % 3 = " << (4 % 3) << std::endl;
+    std::cout << "5 % 3 = " << (5 % 3) << std::endl;
+    std::cout << "6 % 3 = " << (6 % 3) << std::endl;
+    std::cout << "7 % 3 = " << (7 % 3) << std::endl;
+    std::cout << "8 % 3 = " << (8 % 3) << std::endl;
+
+    convertNumString(Num);
+    std::cout << "do you want to enter another number? Enter to continue, or  CTRL+C to exit .. ";
+    std::cin.get();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    goto CONTINUE;
+
+}
+
+    // Definition Prototype Function
+void convertNumString(int& Num) {
+
+        // variable
+    std::string NumString = std::to_string(Num);
+
+        // display
+    std::cout << "Output : ";
+
+    if(NumString.length() == 6 || NumString.length() == 9) {
+        for(int i = 0; i < NumString.length(); ++i) {
+            std::cout << NumString[i];
+            if(i % 3 == 2 && i != NumString.length()-1) {
+                std::cout << ".";
+            }
+        }
+    } else if(NumString.length() == 5 || NumString.length() == 8) {
+        for(int i = 0; i < NumString.length(); ++i) {
+            std::cout << NumString[i];
+            if(i % 3 == 1 && i != NumString.length()-1) {
+                std::cout << ".";
+            }
+        }
+    } else if(NumString.length() == 4 || NumString.length() == 7) {
+        for(int i = 0; i < NumString.length(); ++i) {
+            if(i % 3 == 1 && i != NumString.length()) {
+                std::cout << ".";
+            }
+            std::cout << NumString[i];
+        }
+    } else {
+      for(int i = 0; i < NumString.length(); ++i) {
+            std::cout << NumString[i];
+        }
+    }
+    std::cout << "\n\nConvert Number is done\n"; 
+
+}
