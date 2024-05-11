@@ -1,0 +1,42 @@
+#include <iostream>
+#include <thread> // delay
+#include <chrono> // time
+#include <iomanip> // srand() and rand()
+#include <fstream> // file stream
+
+    // Prototype
+void checkFile(std::fstream&);
+
+int main() {
+    
+        // variable
+    int Package = 100;
+    std::fstream MyFile;
+
+        // display
+    checkFile(MyFile);
+
+}
+
+void checkFile(std::fstream& MyFile)  {
+
+    system("clear");
+    MyFile.open("file.txt");
+    if(!MyFile.is_open()) {
+        MyFile.close();
+        std::cout << "File not found! Enter to continue or CTRL+C ..";
+        std::cin.get();
+        for(int i = 0; i < 100; ++i) {
+            system("clear");
+            std::cout << "Download File .. " << 100 + rand() % 250 << "Kb/s (" << i+1 << "%)\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(100)); // 1 second == 1.000 millisecond
+        }
+        MyFile.open("file.txt", std::ios::trunc | std::ios::in | std::ios::out);
+        MyFile << "****** README My File TXT *******\n";
+        MyFile << "Don't Forget to Subscribe My Channel { LearningUntilYouWin }\n";
+        MyFile << "And, Like My Video\n";
+        MyFile << "Share if you LIKE, to make another People know\n";
+    }
+    std::cout << "File is ready.." << std::endl;
+    MyFile.close();
+}
